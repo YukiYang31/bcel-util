@@ -4,6 +4,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import org.checkerframework.checker.formatter.qual.FormatMethod;
+import org.checkerframework.checker.modifiability.qual.Modifiable;
 import org.checkerframework.checker.nullness.qual.EnsuresNonNull;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
@@ -42,7 +43,7 @@ public final class SimpleLog {
   private @Nullable String indentString = null;
 
   /** Cache of indentation strings that have been computed so far. */
-  private List<String> indentStrings;
+  private @Modifiable List<String> indentStrings;
 
   /** Create a new SimpleLog object with logging to standard out enabled. */
   public SimpleLog() {

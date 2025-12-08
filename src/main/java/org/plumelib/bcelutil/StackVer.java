@@ -50,6 +50,7 @@ import org.apache.bcel.verifier.structurals.LocalVariables;
 import org.apache.bcel.verifier.structurals.OperandStack;
 import org.apache.bcel.verifier.structurals.UninitializedObjectType;
 import org.checkerframework.checker.index.qual.NonNegative;
+import org.checkerframework.checker.modifiability.qual.Modifiable;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
 import org.checkerframework.checker.nullness.qual.NonNull;
 
@@ -91,10 +92,10 @@ public final class StackVer {
   private static final class InstructionContextQueue {
     // The following two fields together represent the queue.
     /** The first elements from pairs in the queue. */
-    private final List<InstructionContext> ics = new Vector<>();
+    private final @Modifiable List<InstructionContext> ics = new Vector<>();
 
     /** The second elements from pairs in the queue. */
-    private final List<ArrayList<InstructionContext>> ecs = new Vector<>();
+    private final @Modifiable List<ArrayList<InstructionContext>> ecs = new Vector<>();
 
     /**
      * Adds an (InstructionContext, ExecutionChain) pair to this queue.

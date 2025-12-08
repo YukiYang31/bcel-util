@@ -32,6 +32,7 @@ import org.apache.bcel.verifier.structurals.OperandStack;
 import org.checkerframework.checker.index.qual.IndexOrLow;
 import org.checkerframework.checker.index.qual.NonNegative;
 import org.checkerframework.checker.interning.qual.InternedDistinct;
+import org.checkerframework.checker.modifiability.qual.Modifiable;
 import org.checkerframework.checker.nullness.qual.EnsuresNonNull;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
 import org.checkerframework.checker.nullness.qual.Nullable;
@@ -132,7 +133,7 @@ public abstract class StackMapUtils {
    * A map from instructions that create uninitialized NEW objects to the corresponding StackMap
    * entry. Set by buildUninitializedNewMap.
    */
-  private Map<InstructionHandle, Integer> uninitializedNewMap = new HashMap<>();
+  private @Modifiable Map<InstructionHandle, Integer> uninitializedNewMap = new HashMap<>();
 
   /**
    * Returns a String array with newString added to the end of arr.
