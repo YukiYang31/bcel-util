@@ -50,6 +50,7 @@ import org.apache.bcel.verifier.structurals.LocalVariables;
 import org.apache.bcel.verifier.structurals.OperandStack;
 import org.apache.bcel.verifier.structurals.UninitializedObjectType;
 import org.checkerframework.checker.index.qual.NonNegative;
+import org.checkerframework.checker.modifiability.qual.Growable;
 import org.checkerframework.checker.modifiability.qual.Modifiable;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
 import org.checkerframework.checker.nullness.qual.NonNull;
@@ -231,7 +232,7 @@ public final class StackVer {
       @SuppressWarnings("unchecked") // ec is of type ArrayList<InstructionContext>
       final ArrayList<InstructionContext> oldchain = (ArrayList<InstructionContext>) (ec.clone());
       @SuppressWarnings("unchecked") // ec is of type ArrayList<InstructionContext>
-      final ArrayList<InstructionContext> newchain = (ArrayList<InstructionContext>) (ec.clone());
+      final @Growable ArrayList<InstructionContext> newchain = (@Growable ArrayList<InstructionContext>) (ec.clone());
       newchain.add(u);
 
       if ((u.getInstruction().getInstruction()) instanceof RET ret) {
@@ -534,7 +535,7 @@ public final class StackVer {
   // Code from PassVerifier in BCEL so that we don't have to extend it
 
   /** The (warning) messages. */
-  private ArrayList<String> messages = new ArrayList<>();
+  private @Modifiable ArrayList<String> messages = new ArrayList<>();
 
   /**
    * This method adds a (warning) message to the message pool of this PassVerifier.
