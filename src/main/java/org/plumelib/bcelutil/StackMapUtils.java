@@ -126,7 +126,7 @@ public abstract class StackMapUtils {
   protected int firstLocalIndex;
 
   /** An empty StackMap used for initialization. */
-  @SuppressWarnings("interning") // @InternedDistinct initalization with fresh object
+  @SuppressWarnings("interning") // @InternedDistinct initialization with fresh object
   private StackMapEntry @InternedDistinct [] emptyStackMapTable = {};
 
   /**
@@ -354,7 +354,7 @@ public abstract class StackMapUtils {
       return;
     }
 
-    // Make sure all instruction offsets are uptodate.
+    // Make sure all instruction offsets are up-to-date.
     il.setPositions();
 
     // Loop through each instruction looking for a switch
@@ -748,7 +748,7 @@ public abstract class StackMapUtils {
     // we need to make a pass over the byte codes to update the local
     // offset values of all the locals we just shifted up.  This may have
     // a 'knock on' effect if we are forced to change an instruction that
-    // references implict local #3 to an instruction with an explict
+    // references implicit local #3 to an instruction with an explicit
     // reference to local #4 as this would require the insertion of an
     // offset into the byte codes. This means we would need to make an
     // additional pass to update branch targets (no - BCEL does this for
@@ -844,7 +844,7 @@ public abstract class StackMapUtils {
     // Now we need to make a pass over the byte codes to update the local
     // offset values of all the locals we just shifted up.  This may have
     // a 'knock on' effect if we are forced to change an instruction that
-    // references implict local #3 to an instruction with an explict
+    // references implicit local #3 to an instruction with an explicit
     // reference to local #4 as this would require the insertion of an
     // offset into the byte codes. This means we would need to make an
     // additional pass to update branch targets (no - BCEL does this for
@@ -885,7 +885,7 @@ public abstract class StackMapUtils {
 
       if (lv.getName().startsWith("DaIkOnTeMp")) {
         // Remember the index of a compiler temp.  We may wish
-        // to insert our new local prior to a temp to simplfy
+        // to insert our new local prior to a temp to simplify
         // the generation of StackMaps.
         if (compilerTempI == -1) {
           compilerTempI = i;
@@ -979,7 +979,7 @@ public abstract class StackMapUtils {
    *       <ul>
    *         <li>saving the exception in a finally clause
    *         <li>the lock for a synchronized block
-   *         <li>interators
+   *         <li>iterators
    *         <li>user declared locals that never appear in a StackMap
    *         <li>(others?)
    *       </ul>
@@ -1147,7 +1147,7 @@ public abstract class StackMapUtils {
     InstructionList il = mgen.getInstructionList();
     il.setPositions();
 
-    // Set up inital state of StackMap info on entry to method.
+    // Set up initial state of StackMap info on entry to method.
     int localsOffsetHeight = 0;
     int byteCodeOffset = -1;
     LocalVariableGen newLvg;
