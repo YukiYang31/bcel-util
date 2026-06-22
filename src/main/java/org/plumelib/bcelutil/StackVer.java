@@ -51,6 +51,7 @@ import org.apache.bcel.verifier.structurals.OperandStack;
 import org.apache.bcel.verifier.structurals.UninitializedObjectType;
 import org.checkerframework.checker.index.qual.NonNegative;
 import org.checkerframework.checker.modifiability.qual.Growable;
+import org.checkerframework.checker.modifiability.qual.IteratorPolyMod;
 import org.checkerframework.checker.modifiability.qual.Modifiable;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
 import org.checkerframework.checker.nullness.qual.NonNull;
@@ -93,10 +94,11 @@ public final class StackVer {
   private static final class InstructionContextQueue {
     // The following two fields together represent the queue.
     /** The first elements from pairs in the queue. */
-    private final @Modifiable List<InstructionContext> ics = new Vector<>();
+    private final @Modifiable @IteratorPolyMod List<InstructionContext> ics = new Vector<>();
 
     /** The second elements from pairs in the queue. */
-    private final @Modifiable List<ArrayList<InstructionContext>> ecs = new Vector<>();
+    private final @Modifiable @IteratorPolyMod List<ArrayList<InstructionContext>> ecs =
+        new Vector<>();
 
     /**
      * Adds an (InstructionContext, ExecutionChain) pair to this queue.
@@ -232,7 +234,8 @@ public final class StackVer {
       @SuppressWarnings("unchecked") // ec is of type ArrayList<InstructionContext>
       final ArrayList<InstructionContext> oldchain = (ArrayList<InstructionContext>) (ec.clone());
       @SuppressWarnings("unchecked") // ec is of type ArrayList<InstructionContext>
-      final @Growable ArrayList<InstructionContext> newchain = (@Growable ArrayList<InstructionContext>) (ec.clone());
+      final @Growable ArrayList<InstructionContext> newchain =
+          (@Growable ArrayList<InstructionContext>) (ec.clone());
       newchain.add(u);
 
       if ((u.getInstruction().getInstruction()) instanceof RET ret) {
